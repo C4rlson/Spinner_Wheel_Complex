@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>4 Wheels with Layers Panel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="wheelWrap">
+        <canvas class="wheelCanvas" width="300" height="300"></canvas>
+        <div class="controls">
+            <button class="spinBtn" style="margin-top: 10px;">Spin</button>
+            <button class="stopBtn" style="margin-bottom: 20px;">Stop</button>
+            <div>
+                <strong>Selected Layer:</strong> <span class="selLayerName">None</span>
+            </div>
+            <div>
+                <label>Layer Name:</label>
+                <input type="text" class="layerNameInput" placeholder="Edit layer name" />
+            </div>
+            <div class="layers-list"></div>
+            <button class="addLayerBtn">Add Layer</button>
+            <button class="removeLayerBtn">Remove Layer</button>
+            <div>
+                <label>Sectors Count:</label>
+                <input type="number" class="sectorCountInput" min="2" max="24" style="width:50px" />
+                <button class="applySectorsBtn">Apply Count</button>
+                <button class="saveSectorsBtn">Save Labels</button>
+            </div>
+            <div class="sectorFormBox">
+                <form class="sectorForm"></form>
+            </div>
+
+            <div class="results"></div>
+        </div>
+    </div>
+
+    <!-- Duplicate wheel example (2nd wheel below first) -->
+    <div class="wheelWrap">
+        <canvas class="wheelCanvas" width="300" height="300"></canvas>
+        <div class="controls">
+            <button class="spinBtn" style="margin-top: 10px;">Spin</button>
+            <button class="stopBtn" style="margin-bottom: 20px;">Stop</button>
+            <div>
+                <strong>Selected Layer:</strong> <span class="selLayerName">None</span>
+            </div>
+            <div>
+                <label>Layer Name:</label>
+                <input type="text" class="layerNameInput" placeholder="Edit layer name" />
+            </div>
+            <div class="layers-list"></div>
+            <button class="addLayerBtn">Add Layer</button>
+            <button class="removeLayerBtn">Remove Layer</button>
+            <div>
+                <label>Sectors Count:</label>
+                <input type="number" class="sectorCountInput" min="2" max="24" style="width:50px" />
+                <button class="applySectorsBtn">Apply Count</button>
+                <button class="saveSectorsBtn">Save Labels</button>
+            </div>
+            <div class="sectorFormBox">
+                <form class="sectorForm"></form>
+            </div>
+
+            <div class="results"></div>
+        </div>
+    </div>
+
+    <div class="wheelWrap">
+        <canvas class="wheelCanvas" width="300" height="300"></canvas>
+        <div class="controls">
+            <button class="spinBtn" style="margin-top: 10px;">Spin</button>
+            <button class="stopBtn" style="margin-bottom: 20px;">Stop</button>
+            <div>
+                <strong>Selected Layer:</strong> <span class="selLayerName">None</span>
+            </div>
+            <div>
+                <label>Layer Name:</label>
+                <input type="text" class="layerNameInput" placeholder="Edit layer name" />
+            </div>
+            <div class="layers-list"></div>
+            <button class="addLayerBtn">Add Layer</button>
+            <button class="removeLayerBtn">Remove Layer</button>
+            <div>
+                <label>Sectors Count:</label>
+                <input type="number" class="sectorCountInput" min="2" max="24" style="width:50px" />
+                <button class="applySectorsBtn">Apply Count</button>
+                <button class="saveSectorsBtn">Save Labels</button>
+            </div>
+            <div class="sectorFormBox">
+                <form class="sectorForm"></form>
+            </div>
+
+            <div class="results"></div>
+        </div>
+    </div>
+
+    <div class="wheelWrap">
+        <canvas class="wheelCanvas" width="300" height="300"></canvas>
+        <div class="controls">
+            <button class="spinBtn" style="margin-top: 10px;">Spin</button>
+            <button class="stopBtn" style="margin-bottom: 20px;">Stop</button>
+            <div>
+                <strong>Selected Layer:</strong> <span class="selLayerName">None</span>
+            </div>
+            <div>
+                <label>Layer Name:</label>
+                <input type="text" class="layerNameInput" placeholder="Edit layer name" />
+            </div>
+            <div class="layers-list"></div>
+            <button class="addLayerBtn">Add Layer</button>
+            <button class="removeLayerBtn">Remove Layer</button>
+            <div>
+                <label>Sectors Count:</label>
+                <input type="number" class="sectorCountInput" min="2" max="24" style="width:50px" />
+                <button class="applySectorsBtn">Apply Count</button>
+                <button class="saveSectorsBtn">Save Labels</button>
+            </div>
+            <div class="sectorFormBox">
+                <form class="sectorForm"></form>
+            </div>
+
+            <div class="results"></div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
