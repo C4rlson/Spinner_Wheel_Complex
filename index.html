@@ -303,7 +303,6 @@
         </div>
     </div>
 
-
     <script>
         class Wheel {
             constructor(canvas) {
@@ -327,6 +326,7 @@
                 this.resultsBox = wrap.querySelector('.results');
                 this.layerNameInput = wrap.querySelector('.layerNameInput');
 
+                // popup for showing results
                 this.popup = document.createElement('div');
                 Object.assign(this.popup.style, {
                     position: 'absolute',
@@ -356,15 +356,17 @@
                 canvas.addEventListener('dblclick', e => this.onDblClick(e));
                 canvas.addEventListener('click', e => this.onClick(e));
 
-                // Load saved layers if exist
+                // Load saved layers or create default
                 this.loadFromStorage() || this.initDefaultLayers();
 
+                // Listen for layer name input changes
                 if (this.layerNameInput) {
                     this.layerNameInput.addEventListener('input', (e) => {
                         if (!this.selectedLayerId) return;
                         const layer = this.layers.find(l => l.id === this.selectedLayerId);
                         layer.name = e.target.value.trim() || `Layer ${this.layers.findIndex(l => l.id === this.selectedLayerId) + 1}`;
                         this.refreshLayerList();
+                        this.showResults(); // <-- update results instantly
                         this.saveToStorage();
                     });
                 }
@@ -529,6 +531,7 @@
                 });
                 this.draw();
                 this.refreshLayerList();
+                this.showResults();
                 this.saveToStorage();
             }
 
@@ -545,6 +548,7 @@
                 }
                 this.draw();
                 this.refreshLayerList();
+                this.showResults();
                 this.saveToStorage();
             }
 
@@ -557,6 +561,7 @@
                     this.selectedLayerId = this.layers.length ? this.layers[0].id : null;
                     this.refreshLayerList();
                     this.draw();
+                    this.showResults();
                     this.saveToStorage();
                 }
             }
@@ -626,18 +631,17 @@
                 if (this.layers.length === 0) return;
 
                 let html = '';
-                this.layers.forEach((l, i) => {
+                this.layers.forEach((l) => {
                     const idx = (l.selectedIndex === undefined) ? this.computeSelectedIndex(l) : l.selectedIndex;
                     const label = l.sectors[idx] ? l.sectors[idx].label : '—';
-                    html += `Layer ${i + 1}: ${label}<br>`;
+                    html += `${l.name}: ${label}<br>`;
                 });
-
                 this.popup.innerHTML = html;
                 this.popup.style.opacity = 1;
 
                 if (this.resultsBox) {
                     let list = '<ul style="padding-left:18px;margin:0">';
-                    this.layers.forEach((l, i) => {
+                    this.layers.forEach((l) => {
                         const idx = (l.selectedIndex === undefined) ? this.computeSelectedIndex(l) : l.selectedIndex;
                         const label = l.sectors[idx] ? l.sectors[idx].label : '—';
                         list += `<li><strong>${l.name}:</strong> Sector ${idx + 1} — ${label}</li>`;
@@ -673,7 +677,7 @@
                         const idx = Math.floor(relative / (360 / n));
                         const cur = layer.sectors[idx] ? layer.sectors[idx].label : '';
                         const newLabel = prompt('Edit sector label:', cur);
-                        if (newLabel !== null) { layer.sectors[idx].label = newLabel.trim() || cur; this.draw(); this.saveToStorage(); }
+                        if (newLabel !== null) { layer.sectors[idx].label = newLabel.trim() || cur; this.draw(); this.saveToStorage(); this.showResults(); }
                         return;
                     }
                 }
@@ -691,13 +695,13 @@
             }
 
             saveToStorage() {
-                const key = 'wheel_' + this.canvas.parentElement.querySelector('.wheelCanvas').dataset.id;
+                const key = 'wheel_' + this.canvas.dataset.id;
                 const data = JSON.stringify(this.layers);
                 localStorage.setItem(key, data);
             }
 
             loadFromStorage() {
-                const key = 'wheel_' + this.canvas.parentElement.querySelector('.wheelCanvas').dataset.id;
+                const key = 'wheel_' + this.canvas.dataset.id;
                 const data = localStorage.getItem(key);
                 if (!data) return false;
                 try {
@@ -725,9 +729,7 @@
             wrap.querySelector('.applySectorsBtn').onclick = () => wheel.applySectorCount();
             wrap.querySelector('.saveSectorsBtn').onclick = () => wheel.saveSectorLabels();
         });
-
     </script>
-
 
 </body>
 
